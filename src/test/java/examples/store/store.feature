@@ -29,7 +29,7 @@ Feature: Pruebas de la API de Store - PetStore
 
     Examples:
     |idOrder|
-    |1      |
+    |2      |
     |10     |
 
   @EliminarOrden @happypath
