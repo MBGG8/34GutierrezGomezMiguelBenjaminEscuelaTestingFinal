@@ -7,7 +7,7 @@ Background:
   * def jsonActualizarUsuario = read('classpath:examples/jsonData/actualizarUsuario.json')
   * def jsonListaUsuarios = read('classpath:examples/jsonData/listaUsuarios.json')
 
-@CrearUsuarios @happypath
+@TEST-1 @CrearUsuarios @happypath
 Scenario: Creacion de lista de usuarios ingresando un lista - OK
   Given path 'user/createWithList'
   And request jsonListaUsuario
@@ -15,21 +15,21 @@ Scenario: Creacion de lista de usuarios ingresando un lista - OK
   Then status 200
   And print response
 
-@BuscarUsuario @happypath
+@TEST-2 @BuscarUsuario @happypath
 Scenario: Buscar un Usuario por su Username - OK
   Given path 'user', 'String'
   When method get
   Then status 200
   And print response
 
-@EliminarUsuario @happypath
+@TEST-3 @EliminarUsuario @happypath
 Scenario: Elimina un Usuario por su Username - OK
   Given path 'user', 'Lucas'
   When method delete
   Then status 200
   And print response
 
-@ActualizarUsuario @happypath
+@TEST-4 @ActualizarUsuario @happypath
 Scenario: Actualiza los datos de Usuario - OK
   Given path 'user', 'String'
   And request jsonActualizarUsuario.email = 'mbgg@gmail.com'
@@ -39,7 +39,7 @@ Scenario: Actualiza los datos de Usuario - OK
   Then status 200
   And print response
 
-@InicioSesion @happypath
+@TEST-5 @InicioSesion @happypath
 Scenario: Inicio de sesion del sistema - OK
   Given path 'user/login'
   * def login = read('classpath:examples/jsonData/credenciales.json')
@@ -49,14 +49,14 @@ Scenario: Inicio de sesion del sistema - OK
   Then status 200
   And print response
 
-@CerrarSesion @happypath
+@TEST-6 @CerrarSesion @happypath
 Scenario: Cerrar Sesion del sistema - OK
   Given path 'user/logout'
   When method get
   Then status 200
   And print response
 
-@CrearUsuario @happypath
+@TEST-7 @CrearUsuario @happypath
 Scenario: Creacion de usuario - OK
   Given path 'user'
   And request jsonCrearUsuario
