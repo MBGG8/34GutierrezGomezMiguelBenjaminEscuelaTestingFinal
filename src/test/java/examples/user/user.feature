@@ -1,46 +1,65 @@
-Feature: sample karate test script
-  for help, see: https://github.com/karatelabs/karate/wiki/IDE-Support
+@Regression
+Feature: Pruebas de la API de Users - PetStore
 
-  Background:
-    * url 'https://jsonplaceholder.typicode.com'
+Background:
+  * url petStore
+  * def jsonCrearUsuario = read('classpath:examples/jsonData/crearUsuario.json')
+  * def jsonActualizarUsuario = read('classpath:examples/jsonData/actualizarUsuario.json')
+  * def jsonListaUsuarios = read('classpath:examples/jsonData/listaUsuarios.json')
 
-  Scenario: get all users and then get the first user by id
-    Given path 'users'
-    When method get
-    Then status 200
+@TEST-1 @CrearUsuarios @happypath
+Scenario: Creacion de lista de usuarios ingresando un lista - OK
+  Given path 'user/createWithList'
+  And request jsonListaUsuario
+  When method post
+  Then status 200
+  And print response
 
-    * def first = response[0]
+@TEST-2 @BuscarUsuario @happypath
+Scenario: Buscar un Usuario por su Username - OK
+  Given path 'user', 'String'
+  When method get
+  Then status 200
+  And print response
 
-    Given path 'users', first.id
-    When method get
-    Then status 200
+@TEST-3 @EliminarUsuario @happypath
+Scenario: Elimina un Usuario por su Username - OK
+  Given path 'user', 'Lucas'
+  When method delete
+  Then status 200
+  And print response
 
-  Scenario: create a user and then get it by id
-    * def user =
-      """
-      {
-        "name": "Test User",
-        "username": "testuser",
-        "email": "test@user.com",
-        "address": {
-          "street": "Has No Name",
-          "suite": "Apt. 123",
-          "city": "Electri",
-          "zipcode": "54321-6789"
-        }
-      }
-      """
+@TEST-4 @ActualizarUsuario @happypath
+Scenario: Actualiza los datos de Usuario - OK
+  Given path 'user', 'String'
+  And request jsonActualizarUsuario.email = 'mbgg@gmail.com'
+  And request jsonActualizarUsuario.password = 'contraseña'
+  And request jsonActualizarUsuario
+  When method put
+  Then status 200
+  And print response
 
-    Given url 'https://jsonplaceholder.typicode.com/users'
-    And request user
-    When method post
-    Then status 201
+@TEST-5 @InicioSesion @happypath
+Scenario: Inicio de sesion del sistema - OK
+  Given path 'user/login'
+  * def login = read('classpath:examples/jsonData/credenciales.json')
+  And param username = login.username
+  And param password = login.password
+  When method get
+  Then status 200
+  And print response
 
-    * def id = response.id
-    * print 'created id is: ', id
+@TEST-6 @CerrarSesion @happypath
+Scenario: Cerrar Sesion del sistema - OK
+  Given path 'user/logout'
+  When method get
+  Then status 200
+  And print response
 
-    Given path id
-    # When method get
-    # Then status 200
-    # And match response contains user
-  
+@TEST-7 @CrearUsuario @happypath
+Scenario: Creacion de usuario - OK
+  Given path 'user'
+  And request jsonCrearUsuario
+  When method post
+  Then status 200
+  And print response
