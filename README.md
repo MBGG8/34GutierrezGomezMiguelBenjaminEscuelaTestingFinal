@@ -56,6 +56,7 @@ Para ejecutar todos los tests del módulo Store, utiliza el siguiente comando:
 ```bash
 mvn clean test -Dtest=StoreRunner -Dkarate.options="--tags @Regression" -Dkarate.env=dev
 ```
+---
 ### 3. Módulo User
 
 #### HappyPath
