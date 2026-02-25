@@ -99,7 +99,7 @@ Scenario: Intentar iniciar sesión sin pasar parametros
   * print 'BUG: La API accede al sistema sin credenciales'
 
 @TEST-11 @CrearUsuarioSinDatos @unhappypath
-Scenario: Creacion de usuario sin datos json
+Scenario: Creacion de usuario sin datos
   Given path 'user'
   And request jsonVacio
   When method post
