@@ -30,7 +30,7 @@ Feature: Pruebas de la API de Store - PetStore
     Examples:
     |idOrder|
     |2      |
-    |10     |
+    |9     |
 
   @EliminarOrden @happypath
   Scenario Outline: Eliminar orden de compra por id - OK

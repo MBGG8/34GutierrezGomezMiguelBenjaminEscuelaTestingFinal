@@ -1,8 +1,8 @@
 {
-  "id": 0,
-  "username": "string",
-  "firstName": "string",
-  "lastName": "string",
+  "id": 3,
+  "username": "Carlos",
+  "firstName": "Carlos",
+  "lastName": "Sandoval",
   "email": "string",
   "password": "string",
   "phone": "string",

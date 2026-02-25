@@ -1,0 +1,23 @@
+[
+  {
+    "id": 7896,
+    "username": "tester_Lopez",
+    "firstName": "Benjamin",
+    "lastName": "Lopez",
+    "email": "lopez@gmail.com",
+    "password": "987654321",
+    "phone": "979765421",
+    "userStatus": 1
+  },
+
+  {
+    "id": 4567,
+    "username": "tester_carranza",
+    "firstName": "José",
+    "lastName": "Carranza",
+    "email": "carranza@gmail.com",
+    "password": "123456789",
+    "phone": "979765421",
+    "userStatus": 0
+  }
+]
