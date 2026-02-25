@@ -6,7 +6,7 @@ Feature: Pruebas de la API de Store - PetStore
     * def jsonCrearOrden = read('classpath:examples/jsonData/crearOrden.json')
     * def jsonVacio = {}
 
-  @InventarioMascotas @happypath
+  @TEST-1 @InventarioMascotas @happypath
   Scenario: Muestra el inventario de mascotas por su estado - OK
     Given path 'store/inventory'
     When method get
@@ -14,7 +14,7 @@ Feature: Pruebas de la API de Store - PetStore
     And match response == '#object'
     And print response
 
-  @OrdenCompra @happypath
+  @TEST-2 @OrdenCompra @happypath
   Scenario: Crear una orden de compra para una mascota - OK
     Given path 'store/order'
     And request jsonCrearOrden
@@ -25,7 +25,7 @@ Feature: Pruebas de la API de Store - PetStore
     And match response.complete == true
     And print response
 
-  @BuscarOrden @happyath
+  @TEST-3 @BuscarOrden @happyath
   Scenario Outline: Buscar orden de compra por id - OK
     Given path 'store/order/' + <idOrder>
     When method get
@@ -39,7 +39,7 @@ Feature: Pruebas de la API de Store - PetStore
     |5      |'Valor intermedio'         |
     |9      |'Limite superior permitido'|
 
-  @EliminarOrden @happypath
+  @TEST-4 @EliminarOrden @happypath
   Scenario: Eliminar orden de compra por id - OK
     Given path 'store' , 'order' , jsonCrearOrden.id
     When method delete
@@ -47,7 +47,7 @@ Feature: Pruebas de la API de Store - PetStore
     And print response
 
 ##################################################################################
-  @BuscarOrdenInvalida @unhappyath
+  @TEST-5 @BuscarOrdenInvalida @unhappyath
   Scenario Outline: Buscar orden con id inválido (<1 y >10)
     Given path 'store/order/' + <idOrder>
     When method get
@@ -62,7 +62,7 @@ Feature: Pruebas de la API de Store - PetStore
       |11     |
       |9876   |
 
-  @EliminarOrdenEliminada @unhappypath
+  @TEST-6 @EliminarOrdenEliminada @unhappypath
   Scenario: Eliminar orden de compra que no existe - OK
     Given path 'store' , 'order' , jsonCrearOrden.id
     When method delete
@@ -70,7 +70,7 @@ Feature: Pruebas de la API de Store - PetStore
     And match response.message == 'Order Not Found'
     And print 'Orden no encontrada', response
 
-  @OrdenCompraVacia @unhappypath
+  @TEST-7 @OrdenCompraVacia @unhappypath
   Scenario: Crear una orden sin datos - OK
     Given path 'store/order'
     And request jsonVacio
