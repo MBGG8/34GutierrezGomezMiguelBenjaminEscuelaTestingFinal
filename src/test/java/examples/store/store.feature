@@ -39,7 +39,6 @@ Feature: Pruebas de la API de Store - PetStore
     |5      |'Valor intermedio'         |
     |9      |'Limite superior permitido'|
 
-
   @EliminarOrden @happypath
   Scenario: Eliminar orden de compra por id - OK
     Given path 'store' , 'order' , jsonCrearOrden.id
@@ -47,6 +46,7 @@ Feature: Pruebas de la API de Store - PetStore
     Then status 200
     And print response
 
+##################################################################################
   @BuscarOrdenInvalida @unhappyath
   Scenario Outline: Buscar orden con id inválido (<1 y >10)
     Given path 'store/order/' + <idOrder>
@@ -79,11 +79,3 @@ Feature: Pruebas de la API de Store - PetStore
     Then status 200
     And match response == '#present'
     And print 'Respuesta Incorrecta de la API(debería salir error):', response
-
-
-
-
-
-
-
-
