@@ -2,9 +2,6 @@
 target/
 *.log
 
-# Credenciales
-src/test/java/examples/jsonData/credenciales.json
-
 # IntelliJ IDEA / Android Studio
 .idea/
 *.iml
